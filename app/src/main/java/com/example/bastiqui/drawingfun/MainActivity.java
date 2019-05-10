@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         largeBrush = getResources().getInteger(R.integer.large_size);
 
         drawView = (DrawingView)findViewById(R.id.drawing);
+
+        //random
+        int wallpaperRandom = (int) (Math.random() * 4 + 1);
+        Imagenes imagenes = new Imagenes();
+
+        drawView.setBackgroundResource(imagenes.getWallpaper().get(wallpaperRandom));
 
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         drawBtn.setOnClickListener(this);
