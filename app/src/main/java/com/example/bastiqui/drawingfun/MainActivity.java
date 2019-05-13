@@ -3,13 +3,13 @@ package com.example.bastiqui.drawingfun;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton currPaint, drawBtn, eraseBtn, newBtn;
     private float smallBrush, mediumBrush, largeBrush;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int wallpaperRandom = (int) (Math.random() * 4 + 1);
         Imagenes imagenes = new Imagenes();
 
-        drawView.setBackgroundResource(imagenes.getWallpaper().get(wallpaperRandom));
+        Drawable drawable = getResources().getDrawable(imagenes.getWallpaper().get(wallpaperRandom));
+
+        drawView.setForeground(drawable);
 
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         drawBtn.setOnClickListener(this);
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view){
         //respond to clicks
-        if(view.getId()==R.id.draw_btn) {
+        if(view.getId() == R.id.draw_btn) {
             //draw button clicked
             final Dialog brushDialog = new Dialog(this);
             brushDialog.setTitle("Brush size:");
@@ -112,36 +115,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             brushDialog.setTitle("Eraser size:");
             brushDialog.setContentView(R.layout.brush_chooser);
 
-            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+            ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
             smallBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     drawView.setErase(true);
                     drawView.setBrushSize(smallBrush);
-                    drawView.setErase(false);
                     brushDialog.dismiss();
                 }
             });
-            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+            ImageButton mediumBtn = (ImageButton) brushDialog.findViewById(R.id.medium_brush);
             mediumBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     drawView.setErase(true);
                     drawView.setBrushSize(mediumBrush);
-                    drawView.setErase(false);
                     brushDialog.dismiss();
                 }
             });
-            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+            ImageButton largeBtn = (ImageButton) brushDialog.findViewById(R.id.large_brush);
             largeBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     drawView.setErase(true);
                     drawView.setBrushSize(largeBrush);
-                    drawView.setErase(false);
                     brushDialog.dismiss();
                 }
             });
+            brushDialog.show();
         } else if(view.getId() == R.id.new_btn) {
             //new button
             AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
