@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -17,12 +20,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawingView drawView;
     private ImageButton currPaint, drawBtn, eraseBtn, newBtn;
     private float smallBrush, mediumBrush, largeBrush;
+    private FrameLayout pnlFlash;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.flash);
 
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);
@@ -52,6 +56,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currPaint = (ImageButton)paintLayout.getChildAt(0);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 
+        pnlFlash = findViewById(R.id.pnlFlash);
+
+        findViewById(R.id.screenshot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pnlFlash.setVisibility(View.VISIBLE);
+
+                AlphaAnimation fade = new AlphaAnimation(1, 0);
+                fade.setDuration(150);
+                fade.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation anim) {
+                        pnlFlash.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                pnlFlash.startAnimation(fade);
+            }
+        });
+
     }
 
     public void paintClicked(View view){
@@ -73,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         //respond to clicks
         if(view.getId() == R.id.draw_btn) {
+            drawView.setErase(false);
             //draw button clicked
             final Dialog brushDialog = new Dialog(this);
             brushDialog.setTitle("Brush size:");
