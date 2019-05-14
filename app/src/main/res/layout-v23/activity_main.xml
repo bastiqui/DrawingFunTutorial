@@ -193,10 +193,11 @@
 
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/screenshot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="flash"/>
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/camera_icon" />
 
 </LinearLayout>
