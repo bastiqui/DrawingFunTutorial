@@ -1,13 +1,12 @@
 package com.example.bastiqui.drawingfun;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.media.MediaActionSound;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private float smallBrush, mediumBrush, largeBrush;
     private FrameLayout pnlFlash;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         pnlFlash = findViewById(R.id.pnlFlash);
 
-        findViewById(R.id.screenshot).setOnClickListener(new View.OnClickListener() {
+            findViewById(R.id.screenshot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pnlFlash.setVisibility(View.VISIBLE);

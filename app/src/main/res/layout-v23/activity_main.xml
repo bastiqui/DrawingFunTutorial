@@ -1,71 +1,78 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFCCCCCC"
-    android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="62dp"
+        android:layout_height="181dp"
         android:layout_gravity="center"
-        android:orientation="horizontal" >
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/new_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
             android:contentDescription="@string/start_new"
             android:src="@drawable/new_pic" />
 
         <ImageButton
             android:id="@+id/draw_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:contentDescription="@string/brush"
             android:src="@drawable/brush" />
 
         <ImageButton
             android:id="@+id/erase_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
             android:contentDescription="@string/erase"
             android:src="@drawable/eraser" />
-
-        <ImageButton
-            android:id="@+id/save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:contentDescription="@string/save"
-            android:src="@drawable/save" />
 
     </LinearLayout>
 
     <com.example.bastiqui.drawingfun.DrawingView
         android:id="@+id/drawing"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="501dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#FFF"
-        android:foreground="@drawable/owl" />
+        android:foreground="@drawable/owl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical" >
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/drawing">
 
         <!-- Top Row -->
         <LinearLayout
             android:id="@+id/paint_colors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF660000"
                 android:contentDescription="@string/paint"
@@ -74,8 +81,8 @@
                 android:tag="#FF660000" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FFFF0000"
                 android:contentDescription="@string/paint"
@@ -84,8 +91,8 @@
                 android:tag="#FFFF0000" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FFFF6600"
                 android:contentDescription="@string/paint"
@@ -94,8 +101,8 @@
                 android:tag="#FFFF6600" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FFFFCC00"
                 android:contentDescription="@string/paint"
@@ -104,8 +111,8 @@
                 android:tag="#FFFFCC00" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF009900"
                 android:contentDescription="@string/paint"
@@ -114,8 +121,8 @@
                 android:tag="#FF009900" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF009999"
                 android:contentDescription="@string/paint"
@@ -129,10 +136,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical">
+
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF0000FF"
                 android:contentDescription="@string/paint"
@@ -141,8 +149,8 @@
                 android:tag="#FF0000FF" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF990099"
                 android:contentDescription="@string/paint"
@@ -151,8 +159,8 @@
                 android:tag="#FF990099" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FFFF6666"
                 android:contentDescription="@string/paint"
@@ -161,8 +169,8 @@
                 android:tag="#FFFF6666" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FFFFFFFF"
                 android:contentDescription="@string/paint"
@@ -171,8 +179,8 @@
                 android:tag="#FFFFFFFF" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF787878"
                 android:contentDescription="@string/paint"
@@ -181,8 +189,8 @@
                 android:tag="#FF787878" />
 
             <ImageButton
-                android:layout_width="@dimen/large_brush"
-                android:layout_height="@dimen/large_brush"
+                android:layout_width="@dimen/colors"
+                android:layout_height="@dimen/colors"
                 android:layout_margin="2dp"
                 android:background="#FF000000"
                 android:contentDescription="@string/paint"
@@ -195,9 +203,22 @@
 
     <ImageButton
         android:id="@+id/screenshot"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/camera_icon" />
+        android:src="@drawable/camera_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/camera_icon_for_camera_sound" />
 
-</LinearLayout>
+    <ImageButton
+        android:layout_width="101dp"
+        android:layout_height="83dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/goback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
